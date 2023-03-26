@@ -45,49 +45,17 @@ const directors = [
     top_rated_film: "Далласский клуб покупателей",
   },
 ];
-console.log(directors);
-const outDirectors = document.querySelector(".dir");
-
-const outName = document.querySelector("#name");
-const outCareer = document.querySelector("#career");
-const outFilms = document.querySelector("#films");
 const outTop = document.querySelector("#top");
+const topFilmsList = directors.map((director) => director.top_rated_film);
 
-function allDirectors() {
-  let directorsList = "";
+directors.forEach((director) => {
+  const directorInfo = document.createElement("div");
 
-  for (let item of directors) {
-    directorsList += `
-      <div class="allInfo">
-        <p>${item.name}</p>
-        <p>${item.career}</p>
-      </div>`;
-    // outName.innerHTML += `${index + 1}` + " " + `${item.name}`;
-    // outCareer.innerHTML += `${item.career}`;
-  }
-
-  outDirectors.innerHTML = directorsList;
-}
-allDirectors();
-// outFilms.innerHTML += `${item.films}`;
-/* <p>${index + 1}</p> */
-function linksFilm() {
-  let linksOf = "";
-
-  for (let item of directors) {
-    linksOf += `
-      <div class="films">
-        <a href='#' class="link">
-          Фильмография
-        </a>
-      </div>`;
-
-    // outName.innerHTML += `${index + 1}` + " " + `${item.name}`;
-    // outCareer.innerHTML += `${item.career}`;
-
-    outTop.innerHTML += `${item.top_rated_film}` + ", ";
-  }
-
-  outFilms.innerHTML = linksOf;
-}
-linksFilm();
+  directorInfo.innerHTML = `
+    <h2>${director.name}</h2>
+    <p><strong>Карьера:</strong> ${director.career}</p>
+    <p><a href="${director.films}" >Фильмография</a></p>
+    <p><strong>Лучший фильм:</strong> ${director.top_rated_film}</p>
+  `;
+  document.body.appendChild(directorInfo);
+});
